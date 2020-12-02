@@ -34,6 +34,7 @@ namespace PrimeiroPOO
             {   
                 defesa1 = false;
                 defesa2 = false;
+                Console.WriteLine("------------------------------");
                 Console.WriteLine($"Rodada {contador}");
                 Console.WriteLine($"Personagem1 = {objetoPersonagem1.nome} - Vida = {vida.vidaPersonagem1}");
                 Console.WriteLine($"Personagem2 = {objetoPersonagem2.nome} - Vida = {vida.vidaPersonagem2}");
@@ -48,46 +49,56 @@ namespace PrimeiroPOO
                     switch (acao)
                     {
                         case 1:
+                            Console.WriteLine($"{objetoPersonagem1.nome}: {objetoPersonagem1.Atacar()}");
                             Console.WriteLine($"O {objetoPersonagem1.nome} usou Ataque");
                             vida.vidaPersonagem2 = vida.vidaPersonagem2 - 800;
                             break;
                         case 2:
+                            Console.WriteLine($"{objetoPersonagem1.nome}: {objetoPersonagem1.Defender()}");
                             Console.WriteLine($"O {objetoPersonagem1.nome} usou Defesa");
                             defesa1 = true;
                             break;
                         case 3:
                             if(contador%2 == 0){
+                                Console.WriteLine($"{objetoPersonagem1.nome}: {objetoPersonagem1.Especial()}");
                                 Console.WriteLine($"O {objetoPersonagem1.nome} usou o Ataque Especial");
                                 vida.vidaPersonagem2 = vida.vidaPersonagem2 - 1200;
                             }else{
+                                Console.WriteLine($"{objetoPersonagem1.nome}: {objetoPersonagem1.EspecialFalho()}");
                                 Console.WriteLine($"O {objetoPersonagem1.nome} tentou usar o Ataque Especial e falhou");
                                 vida.vidaPersonagem1 = vida.vidaPersonagem1 - 200;
                             }
                             break;
                         default:
+                            Console.WriteLine($"{objetoPersonagem1.nome}: {objetoPersonagem1.FazerNada()}");
                             Console.WriteLine("Você digitou um número inválido, então você não atacou e nem defendeu."); 
                             break;
                     }
                         switch ((string)acaoMaquina[r])
                         {
                             case "Ataque":
+                                Console.WriteLine($"{objetoPersonagem2.nome}: {objetoPersonagem2.Atacar()}");
                                 Console.WriteLine($"O {objetoPersonagem2.nome} usou Ataque");
                                 vida.vidaPersonagem1 = vida.vidaPersonagem1 - 800;
                                 break;
                             case "Defesa":
+                                Console.WriteLine($"{objetoPersonagem2.nome}: {objetoPersonagem2.Defender()}");
                                 Console.WriteLine($"O {objetoPersonagem2.nome} usou Defesa");
                                 defesa2 = true;
                                 break;
                             case "Ataque Especial":
                                 if(contador%2 == 0){
+                                Console.WriteLine($"{objetoPersonagem2.nome}: {objetoPersonagem2.Especial()}");
                                 Console.WriteLine($"O {objetoPersonagem2.nome} usou o Ataque Especial");
                                 vida.vidaPersonagem1 = vida.vidaPersonagem1 - 1200;
                                 }else{
+                                    Console.WriteLine($"{objetoPersonagem2.nome}: {objetoPersonagem2.EspecialFalho()}");
                                     Console.WriteLine($"O {objetoPersonagem2.nome} tentou usar o Ataque Especial e falhou");
                                     vida.vidaPersonagem2 = vida.vidaPersonagem2 - 200;
                                 }
                                 break;
                             default:
+                                Console.WriteLine($"{objetoPersonagem2.nome}: {objetoPersonagem2.FazerNada()}");
                                 Console.WriteLine($"{objetoPersonagem2.nome} não atacou e nem defendeu.");
                                 break;
                         }
@@ -105,10 +116,13 @@ namespace PrimeiroPOO
             if ((vida.vidaPersonagem1 > 0) && (vida.vidaPersonagem2 > 0))
             {
                 Console.WriteLine("Empate");
+                Console.WriteLine($"{objetoPersonagem2.nome}: {objetoPersonagem2.Empate()}");
             }else if (vida.vidaPersonagem1 > 0){
                 Console.WriteLine($"{objetoPersonagem1.nome} Venceu");
+                Console.WriteLine($"{objetoPersonagem1.nome}: {objetoPersonagem1.Vitoria()}");
             }else{
                 Console.WriteLine($"{objetoPersonagem2.nome} Venceu");
+                Console.WriteLine($"{objetoPersonagem2.nome}: {objetoPersonagem2.Vitoria()}");
             }
         }
     }
